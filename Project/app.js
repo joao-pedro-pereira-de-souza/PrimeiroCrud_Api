@@ -40,6 +40,28 @@ app.get('/' , (req, res) =>{
     
 })
 
+app.post('/register', (req , res) =>{
+    Usuarios.create(req.body, (err) =>{
+
+        if(err){
+            return res.status(400).json({
+
+                error:true,
+                mesagem:'Ocorreu algum erro no cadastro'
+
+            })
+        }
+
+        return res.json({
+
+            error:false,
+            mesagem:'Usuário cadastrado'
+
+        })
+
+    })
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
