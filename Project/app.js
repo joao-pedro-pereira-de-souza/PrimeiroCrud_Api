@@ -40,6 +40,28 @@ app.get('/' , (req, res) =>{
     
 })
 
+app.delete('/register/:id' , (req , res) =>{
+
+    Usuarios.deleteOne({_id:req.params.id} , (err) => {
+
+        if(err){
+
+            return res.status(400).json({
+                error:true,
+                mesagem:'Erro no processo de detetar'
+            })
+
+        }
+
+        return res.json({
+            error:false,
+            mesagem:'Usuário deletado'
+        })
+
+    })
+
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
