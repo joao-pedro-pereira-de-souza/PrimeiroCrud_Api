@@ -40,6 +40,32 @@ app.get('/' , (req, res) =>{
     
 })
 
+app.put('/register/:id' , (req , res) => {
+
+    Usuarios.updateOne({_id: req.params.id}, req.body , (err)=>{
+
+        if(err){
+
+            return res.status(400).json({
+
+                error:true,
+                message:'Ocorreu um erro na atualzação'
+
+            })
+
+        }
+
+        return res.json({
+
+            error:false,
+            message:'Usuário atualizado'
+
+        })
+
+    })
+
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
