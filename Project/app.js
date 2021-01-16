@@ -1,6 +1,10 @@
-const express = require('express')
 
+const express = require('express')
 const mongoose = require('mongoose')
+
+//#region settings and connection
+
+require('./Models/Users')
 
 mongoose.connect('mongodb://localhost/database' , {
     useNewUrlParser:true,
@@ -11,13 +15,29 @@ mongoose.connect('mongodb://localhost/database' , {
     console.log('falha ao conectar no banco')
 })
 
+const Usuarios = mongoose.model('Users')
+
+//#endregion
+
 const app = express();
 
-app.get('/' , (req , res ) =>{
+app.use(express.json())
 
-    return res.json({mensagem:'primeiro teste'})
+app.get('/' , (req, res) =>{
 
+    Usuarios.find({}).then((data) =>{
 
+        return res.json(data)
+
+    }).catch(()=>{
+
+        return res.status(400).json({
+            error:true,
+            mesagem:'ocoreu algum erro na busca'
+        })
+
+    })
+    
 })
 
 app.listen(8080 , () =>{
