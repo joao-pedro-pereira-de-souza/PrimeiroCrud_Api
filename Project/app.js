@@ -59,6 +59,22 @@ app.get('/products' , (req, res) =>{
     
 })
 
+app.post('/products' , (req , res) =>{
+
+    Products.create(req.body , (err) =>{
+        if(err){
+            return res.status(400).json({
+                error:true,
+                message:'Erro no registro'
+            })
+        }
+        return res.json({
+            error:false,
+            message:'Produto registrado com sucesso'
+        })
+    })
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
