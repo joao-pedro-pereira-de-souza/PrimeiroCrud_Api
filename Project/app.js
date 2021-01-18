@@ -59,6 +59,22 @@ app.get('/products' , (req, res) =>{
     
 })
 
+app.delete('/products/:id' , (req , res) =>{
+    Products.deleteOne({_id: req.params.id} , (err) =>{
+        if(err){
+            return res.status(400).json({
+                error:true,
+                mesagem:'Erro ao tentar deletar o produto'
+            })
+        }
+
+        return res.json({
+            error:false,
+            mesagem:'Pruduto deletado'
+        })
+    })
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
