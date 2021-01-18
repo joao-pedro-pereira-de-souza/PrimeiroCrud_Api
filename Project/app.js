@@ -58,48 +58,33 @@ app.get('/products' , (req, res) =>{
     })
     
 })
-app.get('/signIn' , (req , res) =>{
+app.get('/signIn' , async (req , res) =>{
     try{
 
         const {name , password} = req.body;
+        console.log(name + password)
+        const user = await Usuarios.findOne({name:name})
 
-        Usuarios.findOne({name:name} , (err) =>{
-            if(err){
+        if(!user){
+            return res.status(400).json({
+                error:true,
+                message:'Nome de usuário não encontrado'
+            })
+        }
 
-                return res.status(400).json({
+        if(password != user.password){
 
-                    error:true,
-                    message:'Nome de usuário não encontrado'
+            return res.status(400).json({
+                error:true,
+                message:'Senha de usuário não encontrado'
+            })
 
-                })
-            }
-
-        
-        })
-
-        Usuarios.findOne({password:password} , (err) =>{
-
-            if(err){
-
-              return res.status(400).json({
-
-                  error:true,
-                  message:'senha de usuário não encontrado'
-
-              })
-
-            }
-
-        })
+        }
 
         return res.json({
-
             error:false,
-            mesagem:'Cadastro encontrado'
-
+            message:'Login efetuado com sucesso'
         })
-        
-
     }
     catch(err){
         console.log('Ocorreu algum erro no processo')
