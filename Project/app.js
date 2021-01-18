@@ -62,7 +62,7 @@ app.get('/signIn' , async (req , res) =>{
     try{
 
         const {name , password} = req.body;
-        console.log(name + password)
+        
         const user = await Usuarios.findOne({name:name})
 
         if(!user){
