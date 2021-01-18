@@ -63,7 +63,7 @@ app.get('/signIn' , (req , res) =>{
 
         const {name , password} = req.body;
 
-        Usuarios.findOne({name:name} , (erro) =>{
+        Usuarios.findOne({name:name} , (err) =>{
             if(err){
 
                 return res.status(400).json({
