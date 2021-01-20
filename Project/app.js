@@ -42,7 +42,7 @@ app.get('/' , (req, res) =>{
 
 app.put('/register/:id' , (req , res) => {
 
-    Usuarios.updateOne({_id: req.params.id}, req.body , (err)=>{
+    Usuarios.updateOne({_id: req.params.id}, req.body ,(err)=>{
 
         if(err){
 
