@@ -7,7 +7,7 @@ const config = require('./config/auth.json')
 require('./Models/Users')
 require('./Models/Products')
 
-mongoose.connect(config['base-mongo'] , {
+mongoose.connect(process.env.base-mongo , {
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(() =>{
