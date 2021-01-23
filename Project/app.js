@@ -35,7 +35,7 @@ app.get('/' , (req, res) =>{
 
         return res.status(400).json({
             error:true,
-            mesagem:'ocoreu algum erro na busca'
+            message:'ocoreu algum erro na busca'
         })
 
     })
@@ -52,7 +52,7 @@ app.get('/products' , (req, res) =>{
 
         return res.status(400).json({
             error:true,
-            mesagem:'ocoreu algum erro na busca'
+            message:'ocoreu algum erro na busca'
         })
 
     })
