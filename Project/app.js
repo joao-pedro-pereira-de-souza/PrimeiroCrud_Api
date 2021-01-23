@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 //#region settings and connection
 
 require('./Models/Users')
+require('./Models/Products')
 
 mongoose.connect('mongodb://localhost/database' , {
     useNewUrlParser:true,
@@ -16,6 +17,7 @@ mongoose.connect('mongodb://localhost/database' , {
 })
 
 const Usuarios = mongoose.model('Users')
+const Products = mongoose.model('Products')
 
 //#endregion
 
@@ -33,7 +35,24 @@ app.get('/' , (req, res) =>{
 
         return res.status(400).json({
             error:true,
-            mesagem:'ocoreu algum erro na busca'
+            message:'ocoreu algum erro na busca'
+        })
+
+    })
+    
+})
+
+app.get('/products' , (req, res) =>{
+
+    Products.find({}).then((data) =>{
+
+        return res.json(data)
+
+    }).catch(()=>{
+
+        return res.status(400).json({
+            error:true,
+            message:'ocoreu algum erro na busca'
         })
 
     })

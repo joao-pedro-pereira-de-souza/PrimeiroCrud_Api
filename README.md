@@ -1,2 +1,5 @@
 # PrimeiroCrud_Api
-Primeiros passos para criação de Api no Node.js / Express / MongoDB
+``Warning: the commands used are first steps, that is, without token and data security``
+`
+* Express
+* mongoose
