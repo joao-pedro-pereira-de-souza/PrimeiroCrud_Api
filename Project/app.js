@@ -42,6 +42,7 @@ app.get('/' , (req, res) =>{
     
 })
 
+<<<<<<< HEAD
 app.get('/products' , (req, res) =>{
 
     Products.find({}).then((data) =>{
@@ -77,18 +78,37 @@ app.get('/signIn' , async (req , res) =>{
             return res.status(400).json({
                 error:true,
                 message:'Senha de usuário não encontrado'
+=======
+app.delete('/register/:id' , (req , res) =>{
+
+    Usuarios.deleteOne({_id:req.params.id} , (err) => {
+
+        if(err){
+
+            return res.status(400).json({
+                error:true,
+                mesagem:'Erro no processo de detetar'
+>>>>>>> DeleteUser
             })
 
         }
 
         return res.json({
             error:false,
+<<<<<<< HEAD
             message:'Login efetuado com sucesso'
         })
     }
     catch(err){
         console.log('Ocorreu algum erro no processo')
     }
+=======
+            mesagem:'Usuário deletado'
+        })
+
+    })
+
+>>>>>>> DeleteUser
 })
 
 app.listen(8080 , () =>{
