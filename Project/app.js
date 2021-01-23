@@ -159,6 +159,26 @@ app.put('/register/:id' , (req , res) => {
 
 })
 
+app.post('/myHeart/:id' , (req , res) =>{
+
+    Usuarios.updateOne({_id:req.params.id} ,req.body, (err) =>{
+        if(err){
+            return res.status(400).json({
+                error:true,
+                message:'Ocorreu um erro no processo'
+            })
+        }
+
+        return res.json({
+            error:false,
+            message:'Ocorreu um erro no processo'
+        })
+    })
+
+    
+
+})
+
 app.listen(8080 , () =>{
     console.log('Servidor aberto com sucesso!!!')
 })
