@@ -1,13 +1,13 @@
 
 const express = require('express')
 const mongoose = require('mongoose')
-
+const config = require('./config/auth.json')
 //#region settings and connection
 
 require('./Models/Users')
 require('./Models/Products')
 
-mongoose.connect('mongodb://localhost/database' , {
+mongoose.connect(config['base-mongo'] , {
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(() =>{
@@ -42,43 +42,6 @@ app.get('/' , (req, res) =>{
     
 })
 
-<<<<<<< HEAD
-app.get('/products' , (req, res) =>{
-
-    Products.find({}).then((data) =>{
-
-        return res.json(data)
-
-    }).catch(()=>{
-
-        return res.status(400).json({
-            error:true,
-            message:'ocoreu algum erro na busca'
-        })
-
-    })
-    
-})
-app.get('/signIn' , async (req , res) =>{
-    try{
-
-        const {name , password} = req.body;
-        
-        const user = await Usuarios.findOne({name:name})
-
-        if(!user){
-            return res.status(400).json({
-                error:true,
-                message:'Nome de usuário não encontrado'
-            })
-        }
-
-        if(password != user.password){
-
-            return res.status(400).json({
-                error:true,
-                message:'Senha de usuário não encontrado'
-=======
 app.delete('/register/:id' , (req , res) =>{
 
     Usuarios.deleteOne({_id:req.params.id} , (err) => {
@@ -88,27 +51,17 @@ app.delete('/register/:id' , (req , res) =>{
             return res.status(400).json({
                 error:true,
                 mesagem:'Erro no processo de detetar'
->>>>>>> DeleteUser
             })
 
         }
 
         return res.json({
             error:false,
-<<<<<<< HEAD
-            message:'Login efetuado com sucesso'
-        })
-    }
-    catch(err){
-        console.log('Ocorreu algum erro no processo')
-    }
-=======
             mesagem:'Usuário deletado'
         })
 
     })
 
->>>>>>> DeleteUser
 })
 
 app.post('/register', (req , res) =>{
